@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>HTML Events</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;"></body>
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    //Events = activity pe invoke hote hai
+    //Event Listener => More features
+
+    /*
+    //First approach using html attributes
+        <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""  onclick = "alert('owl clicked')"></li>
+    */
+
+    /*
+    //second approach
+    //this is the old approach
+    document.getElementById( 'owl').onclick = function()
+    {
+        alert("owl clicked");
+    }
+    */    
+   //third approach   
+   /*                            //     1.        2.      3.(by-default it is false)
+                                //parameters         eventName, function, false
+   document.getElementById('owl').addEventListener('click' , function(){
+       alert("owl clicked again")
+   })
+   */    
+
+   //fourth approach //attachEvent()=> in Internet Explorer
+   //fifth Approach => using jQUery
+
+   /*
+   //browser event and Mouse Event
+   document.getElementById('owl').addEventListener('click' , function(e){
+      console.log(e);
+   }, false)
+   
+
+   //type of Events ,Timestamp ,defaultPrevented(During Form )
+   //target , toElement, srcElement, currentTarget
+   //clientX, clientY, screenX, screenY
+   //altkey, ctrlkey, shiftkey, keyCode
+
+   //Event Propogation  
+   //Event Bubbling and Event Capturing
+
+   document.getElementById('images').addEventListener('click' , function(e){
+       console.log("Clicked inside the ul")
+   }, false)
+
+    //On clicking owl
+   //first => Clicked inside the ul
+   //second => owl clicked
+
+   //if third parameter is false
+   //It leads to Event Bubbling
+   //from inside to outside
+
+   //if third parameter is true
+   //It leads to Event Capturing
+   //from outside to inside
+   document.getElementById('owl').addEventListener('click' , function(e){
+       console.log("owl clicked")
+       e.stopPropagation(); //to stop Event Bubbling
+   }, false)  //owl is inside images
+
+
+
+   //preventDefault => to prevent default behaviour of the event .. 
+   //On clicking Google , since we have directed it to the google.com .. to prevent this default action set by us we use preventDefault
+   document.getElementById('google').addEventListener('click', function(e){
+     e.preventDefault();
+     e.stopPropagation();
+    console.log("google clicked")
+   }, false)
+   */
+
+
+   //Now we want that  after clicking on the image it should vanish
+
+   document.querySelector('#images').addEventListener('click', function(e){
+     /*
+       //console.log(e)//first check whether event is coming or not
+      // console.log(e.target) //event kha se aa raha hai
+       //console.log(e.target.parentNode) //to remove we should remove the entire image just removing e.target ki vjh se vo bullet as it is reh jayega 
+       let removeIt = e.target.parentNode  //to remove li
+       //removeIt.remove() //1st way
+       removeIt.parentNode.removeChild(removeIt) //2nd way removeIt li hai uska parentNode ul hai abuska child removeIt khud again li he hai
+     */
+       if(e.target.tagName === 'IMG')  // a small check to remove only if it is a image
+       {
+             console.log(e.target.id);
+             let removeIt = e.target.parentNode
+             removeIt.remove()
+       }
+   }, false)
+      //ab isme dekhna agr image(ye to img hai jo li ke andr hai) ki jgh bullet (jo ki exact li) hai to puri list gayab ho gyi -> kaise?
+     //so to stop this -> we have apply some strict check
+      
+</script>
+</html>
