@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ayns Js1</title>
+</head>
+<body>
+    <h1>Asyncronous Javascript</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    /*
+    setTimeout(function(){
+        console.log("Mamta")
+    }, 2000)
+    */
+
+    /*
+    const sayMamta = function(){
+        console.log("Mamta")
+    }
+    const changeMe = setTimeout(sayMamta, 2000)  
+    */ 
+
+
+    const changeText = function(){
+        document.querySelector('h1').innerHTML = "Best JS Series"
+    }
+
+    const changeMe = setTimeout(changeText, 2000)
+
+
+    //clearTimeout(chaneMe)  //to stop a setTimeout before performing its action //But applied on event 
+
+    //Event Here is -> Clicking on the stop button
+
+    document.querySelector('#stop').addEventListener('click', function(){
+        clearTimeout(changeMe);
+        console.log("STOPPED")
+    })
+
+</script>
+</html>

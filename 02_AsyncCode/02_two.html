@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Asyncronous Js2</h1>
+    <button id="start">Start</button>
+    <button id = "stop">Stop</button>
+</body>
+<script>
+    //setInterval -> (handler(Callback function), interval)
+    /*
+    setInterval( function(){
+        console.log("mamta", Date.now());
+    },1000)
+    */
+    /*
+    const sayDate = function(){
+        console.log("mamta", Date.now());
+    }
+    setInterval(sayDate, 1000)
+    */
+
+    // Here a third parameter can also be passed->which goes as argument to the callback function
+
+    const sayDate = function(str){
+        console.log(str, Date.now());
+    }
+
+    //const intervalId = setInterval(sayDate, 1000, "hi")
+    let intervalId;
+
+
+    //clearInterval(intervalId) //to stop 
+
+    //start->print 
+    //stop -> stop 
+
+    //start
+    document.querySelector('#start').addEventListener('click', function(){
+        //const intervalId = setInterval(sayDate, 1000, "hi")
+        intervalId = setInterval(sayDate, 1000, "hi")
+    })
+
+    //stop
+    document.querySelector('#stop').addEventListener('click', function(){
+        clearInterval(intervalId);
+    })
+
+</script>
+</html>
