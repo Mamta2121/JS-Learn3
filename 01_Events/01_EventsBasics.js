@@ -56,7 +56,7 @@ Concept :->
   */
 
 
-    Event Object
+    ******Event Object******
 -> Sometimes, inside an event handler function, you'll see a parameter specified with a name such as event, evt, or e. 
    This is called the event object, and it is automatically passed to event handlers to provide extra features and information.
 -> 
@@ -73,7 +73,7 @@ Concept :->
   So, in this example, we are setting a random background color on the button, not the page.
 
 
-    Preventing Default behaviour
+    *****Preventing Default behaviour*****
 -> 
   /*  
   form.addEventListener("submit", (e) => {
@@ -85,4 +85,30 @@ Concept :->
   */
 -> addEventListener: Attaches an event listener to the form for the submit event.
    preventDefault(): Stops the form from being submitted if validation fails.
-   Error Handling: Displays a custom error message when any field is empt
+   Error Handling: Displays a custom error message when any field is empty
+
+
+   ******Event Bubbling****** 
+-> Event bubbles up from the innermost element that was clicked
+-> The Event object has a function available on it called stopPropagation() which, 
+   when called inside an event handler, prevents the event from bubbling up to any other elements.
+
+
+
+   ******Event Capturing******
+-> This is like event bubbling but the order is reversed: so instead of the event firing first on the innermost element targeted, and then on successively less nested elements, the event fires first on the least nested element, and then on successively more nested elements, until the target is reached.
+  Event capture is disabled by default. To enable it you have to pass the capture option in addEventListener(). 
+
+
+  *******Event Delegation******
+-> In this practice, when we want some code to run when the user interacts with any one of a large number of child elements, 
+   we set the event listener on their parent and have events that happen on them bubble up to their parent rather than having to set the event listener on every child individually.
+-> The difference is that target refers to the element on which the event was initially fired, while currentTarget refers to the element to which this event handler has been attached.
+   While target remains the same while an event bubbles up, currentTarget will be different for event handlers that are attached to different elements in the hierarchy.
+    
+    
+    
+
+
+
+
